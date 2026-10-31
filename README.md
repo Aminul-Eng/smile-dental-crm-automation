@@ -1,5 +1,11 @@
 <div align="center">
 
+<a href="https://www.gohighlevel.com/" target="_blank" rel="noopener noreferrer">
+  <img src="https://assets.cdn.filesafe.space/zELBHkVp0JPbbLvKIlF5/media/690a5f4a57ea175183408da2.png" alt="Official HighLevel logo" width="300" />
+</a>
+
+**Powered by GoHighLevel**
+
 # Smile Dental CRM & Appointment Automation
 
 **A GoHighLevel workflow automation demo for a dental clinic**
@@ -48,23 +54,51 @@ The demo uses GoHighLevel CRM and Workflows to centralize lead and appointment-r
 
 ## Workflow Architecture
 
+Two connected automation flows power the Smile Dental CRM:
+
 ```mermaid
-flowchart TD
-    A["Website Enquiry"] --> B["Contact Created / Tagged"]
-    B --> C["Lead Opportunity Created"]
-    C --> D["Follow-up Task + Internal Notification"]
-    D --> E["Lead Follow-up Emails"]
+flowchart TB
+    subgraph LEAD["01 | LEAD MANAGEMENT"]
+        direction TB
+        L1(["🌐 Website Enquiry"])
+        L2(["👤 Contact Created"])
+        L3(["📋 Opportunity Created"])
+        L4(["✉️ Follow-up Email"])
+        L5(["🔔 Team Notification"])
+        L1 --> L2 --> L3 --> L4 --> L5
+    end
 
-    F["Appointment Events"] --> G["Confirmation"]
-    F --> H["Reminder"]
-    F --> I["Rescheduled Notification"]
-    F --> J["Cancellation Notification"]
+    BOOK(["Appointment booked"])
 
-    classDef lead fill:#DBEAFE,stroke:#2563EB,color:#1E3A8A,stroke-width:1.5px
-    classDef appointment fill:#DCFCE7,stroke:#16A34A,color:#14532D,stroke-width:1.5px
-    class A,B,C,D,E lead
-    class F,G,H,I,J appointment
+    subgraph APPT["02 | APPOINTMENT MANAGEMENT"]
+        direction TB
+        A0(["🗓️ Appointment Event"])
+        direction LR
+        A1(["↻ Rescheduled"])
+        A2(["✓ Confirmation"])
+        A3(["⏰ Reminder"])
+        A4(["✕ Cancellation"])
+        A0 --> A1
+        A0 --> A2
+        A0 --> A3
+        A0 --> A4
+    end
+
+    L5 -.-> BOOK
+    BOOK --> A0
+
+    classDef lead fill:#EFF6FF,stroke:#4F83F5,color:#173B78,stroke-width:1.5px
+    classDef appointment fill:#E8FBF5,stroke:#10B981,color:#075E4E,stroke-width:1.5px
+    classDef bridge fill:#F8FAFC,stroke:#CBD5E1,color:#174477,stroke-width:1px
+
+    class L1,L2,L3,L4,L5 lead
+    class A0,A1,A2,A3,A4 appointment
+    class BOOK bridge
+
+    style LEAD fill:#F5F8FF,stroke:#9BB8FF,stroke-width:1.5px
+    style APPT fill:#F0FBF7,stroke:#69D6B8,stroke-width:1.5px
 ```
+
 
 ## Workflows
 
@@ -201,6 +235,10 @@ Software Developer | Oracle APEX & Database Development | CRM and AI Workflow Au
 - **Project repository:** [smile-dental-crm-automation](https://github.com/Aminul-Eng/smile-dental-crm-automation)
 
 This project was designed and documented by Aminul Islam as a practical portfolio demonstration of CRM workflow configuration, business process automation, and appointment lifecycle handling using GoHighLevel.
+
+## Platform Branding
+
+This project uses the official HighLevel logo to identify the platform used for the demo. HighLevel and its logo are trademarks of their respective owner. This independent portfolio project is not sponsored, endorsed, or certified by HighLevel. The logo is displayed using an asset from the [official HighLevel Brand Kit](https://marketing.gohighlevel.com/brandkit) and is not modified.
 
 ## Disclaimer
 
