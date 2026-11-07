@@ -1,8 +1,6 @@
-# Smile Dental CRM & Appointment Automation
+ <div align="center">
 
-<div align="center">
-
-<a href="https://www.gohighlevel.com/" target="_blank">
+<a href="https://www.gohighlevel.com/" target="_blank" rel="noopener noreferrer">
   <img src="https://assets.cdn.filesafe.space/zELBHkVp0JPbbLvKIlF5/media/690a5f4a57ea175183408da2.png" alt="HighLevel Logo" width="260" />
 </a>
 
@@ -12,8 +10,8 @@ A CRM, Lead Management, Appointment Automation and Patient Communication Portfol
 
 [![Platform](https://img.shields.io/badge/Platform-GoHighLevel-286EF0?style=for-the-badge)](https://www.gohighlevel.com/)
 [![Project](https://img.shields.io/badge/Project-Portfolio%20Demo-7C3AED?style=for-the-badge)]()
-[![Workflows](https://img.shields.io/badge/Workflows-11-16A34A?style=for-the-badge)]()
-[![Testing](https://img.shields.io/badge/Testing-Validated-16A34A?style=for-the-badge)]()
+[![Workflows](https://img.shields.io/badge/Workflows-11%20Configured-16A34A?style=for-the-badge)]()
+[![Testing](https://img.shields.io/badge/Testing-Partially%20Validated-EAB308?style=for-the-badge)]()
 
 **Lead Management • Appointment Automation • Patient Communication • CRM Workflows**
 
@@ -27,7 +25,9 @@ Smile Dental CRM & Appointment Automation is a hands-on portfolio project built 
 
 The project demonstrates how a dental clinic can manage website enquiries, organize leads, automate appointment communications, handle patient replies, manage cancellations and no-shows, and coordinate front-desk follow-up activities.
 
-The system includes 11 configured workflows covering the lead management and appointment lifecycle.
+The system includes **11 configured workflows** covering lead management, appointment lifecycle automation, patient communication, and post-appointment follow-up.
+
+### Project Information
 
 | Project Information | Details |
 |---|---|
@@ -35,10 +35,10 @@ The system includes 11 configured workflows covering the lead management and app
 | Platform | GoHighLevel |
 | Project Type | Practice / Portfolio Demonstration |
 | Business Type | Fictional Dental Clinic |
-| Automation | GHL Workflows |
+| Automation | GoHighLevel Workflows |
 | Communication | Email and Internal Notifications |
 | Calendar | Emily Front Desk's Personal Calendar |
-| Workflow Count | 11 |
+| Workflow Count | 11 Configured Workflows |
 | Production Status | Demo Only |
 
 > This is an independent portfolio demonstration. It is not a live clinical system and does not process real patient information.
@@ -61,7 +61,7 @@ The demo addresses common operational challenges in dental clinic management:
 
 The project uses GoHighLevel CRM and Workflows to automate key business processes.
 
-Main capabilities:
+### Main Capabilities
 
 - Website lead capture using contact tags.
 - Automatic opportunity creation and task assignment.
@@ -73,38 +73,77 @@ Main capabilities:
 - Post-appointment thank-you communication.
 - Automated review request emails.
 - Front-desk notifications and follow-up tasks.
+- Scheduled reminders for rescheduled appointments.
+- Calendar availability validation through a double-booking test.
 
 ## 4. System Architecture
 
+The following architecture illustrates the major components and automation flows implemented in the demo.
+
 ```mermaid
 flowchart TB
-    A[Website Enquiry] --> B[Contact Management]
-    B --> C[Opportunity Creation]
-    C --> D[Lead Follow-up Workflow]
-    D --> E[Email and Staff Notification]
 
-    B --> F[Appointment Booking]
-    F --> G[Appointment Lifecycle]
+    subgraph LEAD["01. LEAD MANAGEMENT"]
+        direction TB
+        A["Website Enquiry"]
+        B["Contact Management"]
+        C["Opportunity Creation"]
+        D["Lead Follow-up Workflow"]
+        E["Email and Staff Notification"]
 
-    G --> H[Confirmation]
-    G --> I[Reminder]
-    G --> J[Rescheduling]
-    G --> K[Cancellation]
-    G --> L[No-Show]
+        A --> B --> C --> D --> E
+    end
 
-    G --> M[Appointment Completed]
-    M --> N[Post-Appointment Follow-up]
-    N --> O[Review Request]
+    subgraph APPOINTMENT["02. APPOINTMENT LIFECYCLE"]
+        direction TB
+        F["Appointment Booking"]
+        G["Appointment Confirmation"]
+        H["Appointment Reminder"]
+        I["Appointment Rescheduled"]
+        J["Appointment Cancellation"]
+        K["No-Show Automation"]
+        L["Appointment Showed"]
 
-    P[Patient Email Reply] --> Q[Patient Reply Detection]
-    Q --> R[Human Handoff]
-    R --> S[Front Desk Assignment]
-    R --> T[Follow-up Task]
+        F --> G
+        F --> H
+        F --> I
+        F --> J
+        F --> K
+        F --> L
+    end
+
+    subgraph COMMUNICATION["03. PATIENT COMMUNICATION"]
+        direction TB
+        M["Patient Email / SMS Reply"]
+        N["Patient Reply Detection"]
+        O["Needs Human Follow-up"]
+        P["Front Desk Assignment"]
+        Q["Follow-up Task"]
+        R["Staff Notification"]
+
+        M --> N --> O
+        O --> P
+        O --> Q
+        O --> R
+    end
+
+    subgraph POST["04. POST-APPOINTMENT"]
+        direction TB
+        S["Post-Appointment Follow-up"]
+        T["Review Request Automation"]
+        U["Rescheduled Appointment Reminder"]
+
+        L --> S
+        L --> T
+        I --> U
+    end
+
+    E -.-> F
 ```
 
 ## 5. Workflow Inventory
 
-The project contains 11 workflows.
+The project contains **11 configured GoHighLevel workflows**.
 
 | # | Workflow | Purpose |
 |---|---|---|
@@ -124,77 +163,77 @@ The project contains 11 workflows.
 
 #### 1. New Website Lead Follow-up
 
-Trigger: Contact Tag Added (`source_website`).
+**Trigger:** Contact Tag Added (`source_website`).
 
-Actions:
+**Actions:**
 - Create Opportunity.
 - Create Follow-up Task.
 - Notify Front Desk.
 
 #### 2. Customer Follow-up
 
-Trigger: Opportunity Created.
+**Trigger:** Opportunity Created.
 
-Actions:
+**Actions:**
 - Send acknowledgement email.
 - Wait one day.
 - Check opportunity stage.
-- Send conditional follow-up email.
+- Send conditional follow-up email if the opportunity remains in the configured New Lead stage.
 
 #### 3. Appointment Confirmation
 
-Trigger: Customer Booked Appointment.
+**Trigger:** Customer Booked Appointment.
 
-Actions:
+**Actions:**
 - Send confirmation email.
 - Notify front-desk staff.
 
 #### 4. Appointment Reminder
 
-Trigger: Customer Booked Appointment.
+**Trigger:** Customer Booked Appointment.
 
-Actions:
+**Actions:**
 - Wait until one day before the appointment.
 - Send appointment reminder email.
 
 #### 5. Appointment Rescheduled
 
-Trigger: Appointment Status.
+**Trigger:** Appointment Status.
 
-Condition:
+**Condition:**
 - `Rescheduled = True`
 
-Actions:
+**Actions:**
 - Send rescheduling confirmation email.
 - Notify Front Desk.
 
 #### 6. Appointment Cancellation
 
-Trigger: Appointment Status — Cancelled.
+**Trigger:** Appointment Status — Cancelled.
 
-Actions:
+**Actions:**
 - Send cancellation email.
 - Notify Front Desk.
 
 #### 7. Patient Reply & Human Handoff
 
-Triggers:
+**Triggers:**
 - Customer Replied — Email.
 - Customer Replied — SMS.
 
-Actions:
+**Actions:**
 - Apply `Needs Human Follow-up` tag.
 - Assign conversation to Front Desk.
 - Create patient follow-up task.
 - Notify Front Desk.
 
-Email reply execution was tested successfully. SMS execution requires a configured phone number and messaging service.
+**Testing Note:** Email reply execution was tested successfully. SMS execution requires a configured phone number and messaging service.
 
 #### 8. No-Show Automation
 
-Trigger: Appointment Status — No-show.
+**Trigger:** Appointment Status — No-show.
 
-Actions:
+**Actions:**
 - Apply Appointment No-Show tag.
 - Send rescheduling email.
 - Notify Front Desk.
@@ -202,32 +241,36 @@ Actions:
 
 #### 9. Post-Appointment Follow-up
 
-Trigger: Appointment Completed.
+**Trigger:** Appointment Status — Showed.
 
-Actions:
+**Actions:**
 - Send post-appointment thank-you email.
 - Create post-appointment follow-up task.
 
 #### 10. Review Request Automation
 
-Trigger: Appointment Completed.
+**Trigger:** Appointment Status — Showed.
 
-Actions:
+**Actions:**
 - Wait one day.
 - Send patient review request email.
 
+**Testing Note:** Test email receipt was confirmed. A production review destination URL has not yet been configured.
+
 #### 11. Rescheduled Appointment Reminder
 
-Trigger: Appointment Status.
+**Trigger:** Appointment Status.
 
-Condition:
+**Condition:**
 - `Rescheduled = True`
 
-Actions:
+**Actions:**
 - Wait until one day before the updated appointment.
 - Send rescheduled appointment reminder email.
 
-The rescheduled branch was tested, and the contact entered the scheduled wait step.
+**Testing Note:** The rescheduled branch was tested successfully, and the contact entered the scheduled Wait step. Final reminder email execution and delivery remain pending.
+
+**Workflow Maintenance:** An older duplicate version of this workflow was moved to Draft after its two active test enrollments were removed. The newer final-tested version remains Published. The archived duplicate is not counted as an additional workflow.
 
 ## 6. Technology Stack
 
@@ -247,24 +290,24 @@ The following table summarizes the tests performed during the demo implementatio
 
 | Workflow / Feature | Validation | Result |
 |---|---|---|
-| Appointment Confirmation | Test booking and confirmation email | Tested |
+| Appointment Confirmation | Test booking and confirmation email; appointment title, date and time content checked | Tested |
 | Appointment Rescheduled | True and false branch execution | Passed |
 | Appointment Cancellation | Cancellation email and notification actions | Passed |
 | Appointment Reminder | One-day-before wait configuration | Configured; delivery verification pending |
 | Customer Follow-up | Temporary one-minute wait test; restored one-day wait | Actions executed; inbox receipt not confirmed |
 | New Website Lead Follow-up | Tag, opportunity, task and notification configuration | Published; detailed end-to-end validation pending |
-| Patient Reply & Human Handoff | Email reply, tag, assignment, task and notification | Passed |
-| No-Show Automation | Tag, email action, task and notification | Passed |
-| Post-Appointment Follow-up | Thank-you email action and task creation | Passed |
+| Patient Reply & Human Handoff | Email reply, tag, assignment, task and notification | Passed; SMS not tested |
+| No-Show Automation | Tag, email action, task and notification | Actions executed; task and tag verified |
+| Post-Appointment Follow-up | Thank-you email action and task creation | Actions executed; task verified |
 | Review Request Automation | One-day wait and test email receipt | Passed |
-| Rescheduled Appointment Reminder | Rescheduled condition and scheduled wait | Passed |
+| Rescheduled Appointment Reminder | Rescheduled condition and scheduled wait | Condition passed; final email delivery pending |
 | Double Booking Test | Same calendar and same time slot with two contacts | Passed in the tested scenario |
 
 ### Double Booking Test
 
 **Test Objective:** Verify whether the same calendar allows two appointments for the same time slot.
 
-Test configuration:
+#### Test Configuration
 
 | Parameter | Value |
 |---|---|
@@ -274,7 +317,7 @@ Test configuration:
 | Contact A | Double Booking A |
 | Contact B | Double Booking B |
 
-Test results:
+#### Test Results
 
 1. Contact A successfully booked the selected slot.
 2. Contact B was selected for the same date and calendar.
@@ -288,43 +331,79 @@ Test results:
 ### Important Testing Notes
 
 - An `Executed` workflow action indicates that GHL executed the action; it does not independently prove inbox delivery.
-- Email receipt was confirmed for the Review Request test and the Patient Reply test was validated through execution logs.
+- Email receipt was confirmed for the Review Request test.
+- Patient Reply & Human Handoff actions were verified through execution logs.
 - SMS was not fully tested because no phone number was configured for messaging.
-- The appointment reminder's actual delivery and all appointment date/time merge fields still require further verification.
+- The appointment reminder's actual delivery and appointment date/time merge fields require further verification.
+- Rescheduled Appointment Reminder enrollment was verified, but final reminder email execution and delivery remain pending.
 - The project uses synthetic test contacts.
+
+### Historical Workflow Enrollment Snapshot
+
+The earlier workflow overview captured the following enrollment counts for the original six-workflow configuration.
+
+| Workflow | Total Enrolled | Active Enrolled |
+|---|---:|---:|
+| Appointment Cancellation | 1 | 0 |
+| Appointment Confirmation (Practice) | 7 | 0 |
+| Appointment Reminder | 1 | 1 |
+| Appointment Rescheduled | 15 | 0 |
+| Customer Follow-up (Practice) | 2 | 1 |
+| New Website Lead Follow-up | 5 | 0 |
+
+These are historical, point-in-time demo counts from the earlier workflow configuration. They are not current counts for all 11 workflows, performance metrics, or evidence of patient outcomes.
 
 ## 8. Project Screenshots
 
-Screenshots should be stored in the repository under the `screenshots/` directory.
+The repository contains the actual workflow screenshots under the `screenshots/workflows/` directory.
 
-Suggested structure:
+### Workflow Overview
 
-```text
-screenshots/
-├── workflows/
-│   ├── 00-workflow-overview.png
-│   ├── 01-appointment-confirmation.png
-│   ├── 02-appointment-reminder.png
-│   ├── 03-appointment-rescheduled.png
-│   ├── 04-appointment-cancellation.png
-│   ├── 05-customer-follow-up.png
-│   ├── 06-new-website-lead-follow-up.png
-│   ├── 07-patient-reply-human-handoff.png
-│   ├── 08-no-show-automation.png
-│   ├── 09-post-appointment-follow-up.png
-│   ├── 10-review-request-automation.png
-│   └── 11-rescheduled-appointment-reminder.png
-│
-└── testing/
-    ├── 01-patient-reply-execution.png
-    ├── 02-no-show-execution.png
-    ├── 03-post-appointment-execution.png
-    ├── 04-review-request-email.png
-    ├── 05-rescheduled-reminder-execution.png
-    └── 06-double-booking-test.png
-```
+![Workflow Overview](screenshots/workflows/00-workflow-overview.png)
 
-Add screenshots only after saving the corresponding evidence files to the repository.
+### 1. Appointment Confirmation
+
+![Appointment Confirmation](screenshots/workflows/01-appointment-confirmation.png)
+
+### 2. Appointment Reminder
+
+![Appointment Reminder](screenshots/workflows/02-appointment-reminder.png)
+
+### 3. Appointment Rescheduled
+
+![Appointment Rescheduled](screenshots/workflows/03-appointment-rescheduled.png)
+
+### 4. Appointment Cancellation
+
+![Appointment Cancellation](screenshots/workflows/04-appointment-cancellation.png)
+
+### 5. Customer Follow-up
+
+![Customer Follow-up](screenshots/workflows/05-customer-follow-up.png)
+
+### 6. New Website Lead Follow-up
+
+![New Website Lead Follow-up](screenshots/workflows/06-new-website-lead-follow-up.png)
+
+### 7. Patient Reply & Human Handoff
+
+![Patient Reply and Human Handoff](screenshots/workflows/07-patient-reply-human-handoff.png)
+
+### 8. No-Show Automation
+
+![No-Show Automation](screenshots/workflows/08-no-show-automation.png)
+
+### 9. Post-Appointment Follow-up
+
+![Post-Appointment Follow-up](screenshots/workflows/09-post-appointment-follow-up.png)
+
+### 10. Review Request Automation
+
+![Review Request Automation](screenshots/workflows/10-review-request-automation.png)
+
+### 11. Rescheduled Appointment Reminder
+
+![Rescheduled Appointment Reminder](screenshots/workflows/11-rescheduled-appointment-reminder.png)
 
 ## 9. Project Outcomes
 
@@ -338,8 +417,9 @@ This project demonstrates practical experience with:
 - Internal notifications and task creation.
 - Human handoff and staff assignment.
 - No-show and review-request automation.
+- Rescheduled appointment reminder scheduling.
 - Calendar availability validation.
-- Workflow execution-log analysis.
+- Workflow enrollment and execution-log analysis.
 
 ## 10. Production Readiness & Security
 
@@ -383,11 +463,13 @@ To recreate the demo:
 2. Create a test pipeline and opportunity stages.
 3. Configure the required contact tags.
 4. Configure a test calendar and team member.
-5. Create the workflows described in this README.
+5. Create the 11 workflows described in this README.
 6. Configure email actions and internal notifications.
-7. Run test cases using synthetic contacts.
-8. Inspect Enrollment History and Execution Logs.
-9. Document the results and screenshots.
+7. Configure the required triggers, conditions and wait actions.
+8. Run test cases using synthetic contacts.
+9. Inspect Enrollment History and Execution Logs.
+10. Verify email delivery separately from workflow execution.
+11. Document the results and screenshots.
 
 ## 13. Author
 
@@ -402,6 +484,8 @@ Software Developer | Oracle APEX & Database Development | CRM and AI Workflow Au
 ## 14. Platform Branding
 
 This project uses the GoHighLevel platform for demonstration purposes. HighLevel and its logo are trademarks of their respective owner. This independent portfolio project is not sponsored, endorsed or certified by HighLevel.
+
+The HighLevel logo is used to identify the platform used in this demonstration.
 
 ## 15. Disclaimer
 
