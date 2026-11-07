@@ -27,6 +27,12 @@ The project demonstrates how a dental clinic can manage website enquiries, organ
 
 The system includes **11 configured workflows** covering lead management, appointment lifecycle automation, patient communication, and post-appointment follow-up.
 
+## Project Architecture & Workflow Overview
+
+The following infographic illustrates the overall Smile Dental CRM automation system, including its 11 workflows across lead management, appointment management, and patient communication.
+
+![Smile Dental CRM & Appointment Automation](docs/workflow-architecture.png)
+
 ### Project Information
 
 | Project Information | Details |
