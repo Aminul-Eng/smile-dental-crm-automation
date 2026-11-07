@@ -31,7 +31,7 @@ The system includes **11 configured workflows** covering lead management, appoin
 
 The following infographic illustrates the overall Smile Dental CRM automation system, including its 11 workflows across lead management, appointment management, and patient communication.
 
-![Smile Dental CRM & Appointment Automation](docs/workflow-architecture.png)
+![Smile Dental CRM & Appointment Automation](screenshots/workflows/docs/workflow-architecture.png)
 
 ### Project Information
 
