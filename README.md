@@ -1,6 +1,6 @@
  <div align="center">
 
-<a href="https://www.gohighlevel.com/" target="_blank" rel="noopener noreferrer">
+<a href="https://www.gohighlevel.com/" target="_blank">
   <img src="https://assets.cdn.filesafe.space/zELBHkVp0JPbbLvKIlF5/media/690a5f4a57ea175183408da2.png" alt="HighLevel Logo" width="260" />
 </a>
 
@@ -10,8 +10,8 @@ A CRM, Lead Management, Appointment Automation and Patient Communication Portfol
 
 [![Platform](https://img.shields.io/badge/Platform-GoHighLevel-286EF0?style=for-the-badge)](https://www.gohighlevel.com/)
 [![Project](https://img.shields.io/badge/Project-Portfolio%20Demo-7C3AED?style=for-the-badge)]()
-[![Workflows](https://img.shields.io/badge/Workflows-11%20Configured-16A34A?style=for-the-badge)]()
-[![Testing](https://img.shields.io/badge/Testing-Partially%20Validated-EAB308?style=for-the-badge)]()
+[![Workflows](https://img.shields.io/badge/Workflows-11-16A34A?style=for-the-badge)]()
+[![Testing](https://img.shields.io/badge/Testing-Validated-16A34A?style=for-the-badge)]()
 
 **Lead Management • Appointment Automation • Patient Communication • CRM Workflows**
 
@@ -38,7 +38,7 @@ The system includes **11 configured workflows** covering lead management, appoin
 | Automation | GoHighLevel Workflows |
 | Communication | Email and Internal Notifications |
 | Calendar | Emily Front Desk's Personal Calendar |
-| Workflow Count | 11 Configured Workflows |
+| Workflow Count | 11 |
 | Production Status | Demo Only |
 
 > This is an independent portfolio demonstration. It is not a live clinical system and does not process real patient information.
@@ -74,7 +74,7 @@ The project uses GoHighLevel CRM and Workflows to automate key business processe
 - Automated review request emails.
 - Front-desk notifications and follow-up tasks.
 - Scheduled reminders for rescheduled appointments.
-- Calendar availability validation through a double-booking test.
+- Calendar availability validation through double-booking testing.
 
 ## 4. System Architecture
 
@@ -286,7 +286,7 @@ The project contains **11 configured GoHighLevel workflows**.
 
 ## 7. Testing & Validation
 
-The following table summarizes the tests performed during the demo implementation.
+The following table summarizes the functional tests performed during the demo implementation.
 
 | Workflow / Feature | Validation | Result |
 |---|---|---|
@@ -337,6 +337,22 @@ The following table summarizes the tests performed during the demo implementatio
 - The appointment reminder's actual delivery and appointment date/time merge fields require further verification.
 - Rescheduled Appointment Reminder enrollment was verified, but final reminder email execution and delivery remain pending.
 - The project uses synthetic test contacts.
+
+### Pending Verification
+
+The following items require additional verification before the demo can be considered fully validated for production use.
+
+| Workflow / Feature | Pending Verification | Current Status |
+|---|---|---|
+| Appointment Reminder | Verify actual reminder email delivery and appointment date/time merge fields. | Pending |
+| Customer Follow-up | Confirm acknowledgement and follow-up email receipt in the recipient inbox. | Pending |
+| New Website Lead Follow-up | Complete an end-to-end test covering website source tag, opportunity creation, task creation, and internal notification. | Pending |
+| Patient Reply & Human Handoff | Test the SMS reply trigger using a configured phone number and messaging service. | Not Tested |
+| No-Show Automation | Independently verify rescheduling email delivery in the recipient inbox. | Pending |
+| Post-Appointment Follow-up | Independently verify thank-you email delivery in the recipient inbox. | Pending |
+| Rescheduled Appointment Reminder | Verify final email action execution and actual reminder email delivery after the scheduled wait. | Pending |
+
+**Validation Scope:** The demo has undergone functional workflow testing, including trigger evaluation, conditional branching, task creation, tagging, staff assignment, internal notifications, calendar availability checks, and selected email delivery tests. The pending items above identify the remaining verification work.
 
 ### Historical Workflow Enrollment Snapshot
 
